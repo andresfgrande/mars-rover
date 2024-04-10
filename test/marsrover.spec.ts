@@ -24,4 +24,36 @@ describe('marsrover should', () => {
       expect(marsRover.getPosition()).toEqual(expectedPosition);
     },
   );
+
+  it('Rotate right to E when orientation is N', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+
+    marsRover.move('R');
+
+    expect(marsRover.getPosition()).toEqual('0:0:E');
+  });
+
+  it('Rotate right to S when orientation is E', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'E' });
+
+    marsRover.move('R');
+
+    expect(marsRover.getPosition()).toEqual('0:0:S');
+  });
+
+  it('Rotate right to W when orientation is S', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'S' });
+
+    marsRover.move('R');
+
+    expect(marsRover.getPosition()).toEqual('0:0:W');
+  });
+
+  it('Rotate right to N when orientation is W', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'W' });
+
+    marsRover.move('R');
+
+    expect(marsRover.getPosition()).toEqual('0:0:N');
+  });
 });
