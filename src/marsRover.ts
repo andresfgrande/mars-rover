@@ -11,6 +11,14 @@ export class MarsRover {
       return;
     }
 
+    this.moveForward();
+  }
+
+  getPosition(): string {
+    return `${this.position.x}:${this.position.y}:${this.position.direction}`;
+  }
+
+  private moveForward() {
     if (this.position.direction === 'N') {
       this.position.y += 1;
     }
@@ -26,10 +34,6 @@ export class MarsRover {
     if (this.position.direction === 'W') {
       this.position.x -= 1;
     }
-  }
-
-  getPosition(): string {
-    return `${this.position.x}:${this.position.y}:${this.position.direction}`;
   }
 
   private rotateRight() {
