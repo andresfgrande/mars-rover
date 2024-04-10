@@ -1,0 +1,47 @@
+# js
+dist/
+node_modules/
+build/
+log/
+
+#ts build info
+tsconfig.build.tsbuildinfo
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+*coverage
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+tests/data/tmp
+demo/data/storage/*
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+#editors
+.vscode/
+.idea/
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows image file caches
+Thumbs.db
+
+# misc
+.env
+sonar-report.xml
