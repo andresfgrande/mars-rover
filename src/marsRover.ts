@@ -6,12 +6,20 @@ export class MarsRover {
   }
 
   move(input: string) {
-    if (input === 'R') {
-      this.rotateRight();
-      return;
-    }
+    const commandsArray: string[] = input.split('');
+    commandsArray.forEach((command: string) => {
+      if (command === 'R') {
+        this.rotateRight();
+        return;
+      }
 
-    this.moveForward();
+      if (command === 'L') {
+        this.rotateLeft();
+        return;
+      }
+
+      this.moveForward();
+    });
   }
 
   getPosition(): string {
@@ -52,6 +60,28 @@ export class MarsRover {
     }
 
     if (this.position.direction === 'W') {
+      this.position.direction = 'N';
+      return;
+    }
+  }
+
+  private rotateLeft() {
+    if (this.position.direction === 'N') {
+      this.position.direction = 'W';
+      return;
+    }
+
+    if (this.position.direction === 'W') {
+      this.position.direction = 'S';
+      return;
+    }
+
+    if (this.position.direction === 'S') {
+      this.position.direction = 'E';
+      return;
+    }
+
+    if (this.position.direction === 'E') {
       this.position.direction = 'N';
       return;
     }
