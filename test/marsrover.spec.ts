@@ -5,6 +5,7 @@ describe('marsrover should', () => {
   //act - when
   //assert - then
 
+  /** MOVING FORWARD **/
   it.each([
     ['N', { x: 0, y: 0, direction: 'N' }, '0:1:N'],
     ['S', { x: 0, y: 1, direction: 'S' }, '0:0:S'],
@@ -25,6 +26,7 @@ describe('marsrover should', () => {
     },
   );
 
+  /** ROTATE RIGHT **/
   it.each([
     ['N', 'E', { x: 0, y: 0, direction: 'N' }, '0:0:E'],
     ['E', 'S', { x: 0, y: 0, direction: 'E' }, '0:0:S'],
@@ -46,6 +48,7 @@ describe('marsrover should', () => {
     },
   );
 
+  /** ROTATE LEFT **/
   it('Rotate Left to W when orientation is N', () => {
     const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
 
@@ -102,6 +105,15 @@ describe('marsrover should', () => {
     expect(marsRover.getPosition()).toEqual('0:3:N');
   });
 
+  it('Move to 0:1:N when input is MMMMMMMMMMM', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+
+    marsRover.move('MMMMMMMMMMM');
+
+    expect(marsRover.getPosition()).toEqual('0:1:N');
+  });
+
+  /** OVERFLOW N **/
   it('Move to 0:0:N when input is MMMMMMMMMM', () => {
     const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
 
@@ -110,11 +122,38 @@ describe('marsrover should', () => {
     expect(marsRover.getPosition()).toEqual('0:0:N');
   });
 
-  it('Move to 0:1:N when input is MMMMMMMMMMM', () => {
+  /** OVERFLOW S **/
+  it('go to the top of the grid', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'S' });
+
+    marsRover.move('M');
+
+    expect(marsRover.getPosition()).toEqual('0:9:S');
+  });
+
+  it('Move to 0:0:N when input is MMMMMMMMMMMMMMMMMMMM', () => {
     const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
 
-    marsRover.move('MMMMMMMMMMM');
+    marsRover.move('MMMMMMMMMMMMMMMMMMMM');
 
-    expect(marsRover.getPosition()).toEqual('0:1:N');
+    expect(marsRover.getPosition()).toEqual('0:0:N');
+  });
+
+  /** OVERFLOW E **/
+  it('go to the beginning of the grid', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'E' });
+
+    marsRover.move('MMMMMMMMMM');
+
+    expect(marsRover.getPosition()).toEqual('0:0:E');
+  });
+
+  /** OVERFLOW W **/
+  it('go to the end of the grid', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'W' });
+
+    marsRover.move('M');
+
+    expect(marsRover.getPosition()).toEqual('9:0:W');
   });
 });

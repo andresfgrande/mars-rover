@@ -32,15 +32,20 @@ export class MarsRover {
     }
 
     if (this.position.direction === 'S') {
-      this.position.y -= 1;
+      const standardPosition: number = (this.position.y - 1) % 10;
+      this.position.y =
+        standardPosition < 0 ? standardPosition + 10 : standardPosition;
     }
 
     if (this.position.direction === 'E') {
-      this.position.x += 1;
+      this.position.x = (this.position.x + 1) % 10;
     }
 
     if (this.position.direction === 'W') {
-      this.position.x -= 1;
+      //this.position.x -= 1;
+      const standardPosition: number = (this.position.x - 1) % 10;
+      this.position.x =
+        standardPosition < 0 ? standardPosition + 10 : standardPosition;
     }
   }
 
