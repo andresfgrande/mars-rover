@@ -1,11 +1,13 @@
-import { MarsRoverTurbo } from '../src/rovers/marsRoverTurbo';
 import { RoverController } from '../src/RoverController';
+import { MarsRover } from '../src/rovers/marsRover';
+import { TurboRover } from '../src/decorators/TurboRover';
 
-describe('marsroverturbo should', () => {
+describe('Lunar Rover turbo Decorator', () => {
   let roverController: RoverController;
   beforeEach(() => {
-    const marsRoverTurbo = new MarsRoverTurbo();
-    roverController = new RoverController(marsRoverTurbo);
+    const marsRover: MarsRover = new MarsRover();
+    const turboRover: TurboRover = new TurboRover(marsRover);
+    roverController = new RoverController(turboRover);
   });
 
   it('Should be able to move forward 2 positions', () => {

@@ -1,4 +1,4 @@
-import { RoverLogger } from '../src/RoverLogger';
+import { RoverLogger } from '../src/decorators/RoverLogger';
 import { MarsRover } from '../src/rovers/marsRover';
 import { RoverController } from '../src/RoverController';
 
