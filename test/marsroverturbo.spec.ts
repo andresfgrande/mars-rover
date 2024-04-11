@@ -1,20 +1,18 @@
 import { MarsRoverTurbo } from '../src/marsRoverTurbo';
+import { RoverController } from '../src/RoverController';
 
 describe('marsroverturbo should', () => {
-  let marsRoverTurbo: MarsRoverTurbo;
+  let roverController: RoverController;
   beforeEach(() => {
-    marsRoverTurbo = new MarsRoverTurbo();
+    const marsRoverTurbo = new MarsRoverTurbo();
+    roverController = new RoverController(marsRoverTurbo);
   });
 
   it('Should be able to move forward 2 positions', () => {
-    marsRoverTurbo.move('M');
-
-    expect(marsRoverTurbo.getPosition()).toEqual('0:2:N');
+    expect(roverController.execute('M')).toEqual('0:2:N');
   });
 
   it('Should be able to move forward 2 positions', () => {
-    marsRoverTurbo.move('MMRMM');
-
-    expect(marsRoverTurbo.getPosition()).toEqual('4:4:E');
+    expect(roverController.execute('MMRMM')).toEqual('4:4:E');
   });
 });

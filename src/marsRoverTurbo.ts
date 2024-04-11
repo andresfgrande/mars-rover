@@ -12,28 +12,11 @@ export class MarsRoverTurbo implements Rover {
     this.position = position ?? { x: 0, y: 0, direction: new North() };
   }
 
-  move(input: string) {
-    const commandsArray: string[] = input.split('');
-    commandsArray.forEach((command: string) => {
-      if (command === 'R') {
-        this.rotateRight();
-        return;
-      }
-
-      if (command === 'L') {
-        this.rotateLeft();
-        return;
-      }
-
-      this.moveForward();
-    });
-  }
-
   getPosition(): string {
     return `${this.position.x}:${this.position.y}:${this.position.direction.cardinalPoint}`;
   }
 
-  private moveForward() {
+  moveForward() {
     if (this.position.direction instanceof North) {
       this.position.y = (this.position.y + 2) % 10;
     }
@@ -55,11 +38,11 @@ export class MarsRoverTurbo implements Rover {
     }
   }
 
-  private rotateRight() {
+  rotateRight() {
     this.position.direction = this.position.direction.rotateRight();
   }
 
-  private rotateLeft() {
+  rotateLeft() {
     this.position.direction = this.position.direction.rotateLeft();
   }
 }
