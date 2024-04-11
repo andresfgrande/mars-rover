@@ -25,37 +25,26 @@ describe('marsrover should', () => {
     },
   );
 
-  it('Rotate right to E when orientation is N', () => {
-    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+  it.each([
+    ['N', 'E', { x: 0, y: 0, direction: 'N' }, '0:0:E'],
+    ['E', 'S', { x: 0, y: 0, direction: 'E' }, '0:0:S'],
+    ['S', 'W', { x: 0, y: 0, direction: 'S' }, '0:0:W'],
+    ['W', 'N', { x: 0, y: 0, direction: 'W' }, '0:0:N'],
+  ])(
+    'Rotate right to %s when orientation is %s',
+    (
+      orientation: string,
+      expectedOrientation: string,
+      initialPosition: { x: number; y: number; direction: string },
+      expectedPosition: string,
+    ) => {
+      const marsRover = new MarsRover(initialPosition);
 
-    marsRover.move('R');
+      marsRover.move('R');
 
-    expect(marsRover.getPosition()).toEqual('0:0:E');
-  });
-
-  it('Rotate right to S when orientation is E', () => {
-    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'E' });
-
-    marsRover.move('R');
-
-    expect(marsRover.getPosition()).toEqual('0:0:S');
-  });
-
-  it('Rotate right to W when orientation is S', () => {
-    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'S' });
-
-    marsRover.move('R');
-
-    expect(marsRover.getPosition()).toEqual('0:0:W');
-  });
-
-  it('Rotate right to N when orientation is W', () => {
-    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'W' });
-
-    marsRover.move('R');
-
-    expect(marsRover.getPosition()).toEqual('0:0:N');
-  });
+      expect(marsRover.getPosition()).toEqual(expectedPosition);
+    },
+  );
 
   it('Rotate Left to W when orientation is N', () => {
     const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
@@ -103,5 +92,29 @@ describe('marsrover should', () => {
     marsRover.move('RMMLM');
 
     expect(marsRover.getPosition()).toEqual('2:1:N');
+  });
+
+  it('Move to 0:3:N when input is MMM', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+
+    marsRover.move('MMM');
+
+    expect(marsRover.getPosition()).toEqual('0:3:N');
+  });
+
+  it('Move to 0:0:N when input is MMMMMMMMMM', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+
+    marsRover.move('MMMMMMMMMM');
+
+    expect(marsRover.getPosition()).toEqual('0:0:N');
+  });
+
+  it('Move to 0:1:N when input is MMMMMMMMMMM', () => {
+    const marsRover = new MarsRover({ x: 0, y: 0, direction: 'N' });
+
+    marsRover.move('MMMMMMMMMMM');
+
+    expect(marsRover.getPosition()).toEqual('0:1:N');
   });
 });

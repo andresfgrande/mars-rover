@@ -28,7 +28,7 @@ export class MarsRover {
 
   private moveForward() {
     if (this.position.direction === 'N') {
-      this.position.y += 1;
+      this.position.y = (this.position.y + 1) % 10;
     }
 
     if (this.position.direction === 'S') {
