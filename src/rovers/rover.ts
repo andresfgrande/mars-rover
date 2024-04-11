@@ -1,5 +1,9 @@
 export interface Rover {
-  move(input: string): void;
+  moveForward(): void;
+
+  rotateLeft(): void;
+
+  rotateRight(): void;
 
   getPosition(): string;
 }
