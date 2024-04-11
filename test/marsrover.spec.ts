@@ -1,4 +1,4 @@
-import { MarsRover } from '../src/marsRover';
+import { MarsRover } from '../src/rovers/marsRover';
 import { North } from '../src/directions/north';
 import { East } from '../src/directions/east';
 import { South } from '../src/directions/south';

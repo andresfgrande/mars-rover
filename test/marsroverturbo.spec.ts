@@ -1,4 +1,4 @@
-import { MarsRoverTurbo } from '../src/marsRoverTurbo';
+import { MarsRoverTurbo } from '../src/rovers/marsRoverTurbo';
 import { RoverController } from '../src/RoverController';
 
 describe('marsroverturbo should', () => {
