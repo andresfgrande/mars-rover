@@ -1,8 +1,16 @@
-export class MarsRover {
-  private position: { x: number; y: number; direction: string };
+//export type Directions = 'N' | 'S' | 'W' | 'E';
 
-  constructor(position?: { x: number; y: number; direction: string }) {
-    this.position = position ?? { x: 0, y: 0, direction: 'N' };
+import { Direction } from './directions/directions';
+import { North } from './directions/north';
+import { South } from './directions/south';
+import { East } from './directions/east';
+import { West } from './directions/west';
+
+export class MarsRover {
+  private position: { x: number; y: number; direction: Direction };
+
+  constructor(position?: { x: number; y: number; direction: Direction }) {
+    this.position = position ?? { x: 0, y: 0, direction: new North() };
   }
 
   move(input: string) {
@@ -23,26 +31,25 @@ export class MarsRover {
   }
 
   getPosition(): string {
-    return `${this.position.x}:${this.position.y}:${this.position.direction}`;
+    return `${this.position.x}:${this.position.y}:${this.position.direction.cardinalPoint}`;
   }
 
   private moveForward() {
-    if (this.position.direction === 'N') {
+    if (this.position.direction instanceof North) {
       this.position.y = (this.position.y + 1) % 10;
     }
 
-    if (this.position.direction === 'S') {
+    if (this.position.direction instanceof South) {
       const standardPosition: number = (this.position.y - 1) % 10;
       this.position.y =
         standardPosition < 0 ? standardPosition + 10 : standardPosition;
     }
 
-    if (this.position.direction === 'E') {
+    if (this.position.direction instanceof East) {
       this.position.x = (this.position.x + 1) % 10;
     }
 
-    if (this.position.direction === 'W') {
-      //this.position.x -= 1;
+    if (this.position.direction instanceof West) {
       const standardPosition: number = (this.position.x - 1) % 10;
       this.position.x =
         standardPosition < 0 ? standardPosition + 10 : standardPosition;
@@ -50,45 +57,10 @@ export class MarsRover {
   }
 
   private rotateRight() {
-    if (this.position.direction === 'N') {
-      this.position.direction = 'E';
-      return;
-    }
-    if (this.position.direction === 'E') {
-      this.position.direction = 'S';
-      return;
-    }
-
-    if (this.position.direction === 'S') {
-      this.position.direction = 'W';
-      return;
-    }
-
-    if (this.position.direction === 'W') {
-      this.position.direction = 'N';
-      return;
-    }
+    this.position.direction = this.position.direction.rotateRight();
   }
 
   private rotateLeft() {
-    if (this.position.direction === 'N') {
-      this.position.direction = 'W';
-      return;
-    }
-
-    if (this.position.direction === 'W') {
-      this.position.direction = 'S';
-      return;
-    }
-
-    if (this.position.direction === 'S') {
-      this.position.direction = 'E';
-      return;
-    }
-
-    if (this.position.direction === 'E') {
-      this.position.direction = 'N';
-      return;
-    }
+    this.position.direction = this.position.direction.rotateLeft();
   }
 }
