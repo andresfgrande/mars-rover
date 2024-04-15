@@ -1,6 +1,6 @@
 import { InMemoryShoppingCartRepository } from '../infraestructure/in-memory-shopping-cart.repository';
-import { ShoppingCart } from '../domain/shopping.cart';
 import { DateGenerator } from '../infraestructure/dateGenerator';
+import { ShoppingCart } from '../domain/shopping.cart';
 
 export interface AddProductAdderRequest {
   idUser: string;
@@ -19,14 +19,21 @@ export class ProductAdder {
     quantity: number;
     idProduct: string;
   }) {
-    const shoppingCart = new ShoppingCart(
+    let currentShoppingCart = this.shoppingCartRepository.getByUserId(
       addProductRequest.idUser,
-      this.dateGenerator.getDate(),
     );
-    shoppingCart.addProduct(
+
+    if (!currentShoppingCart) {
+      currentShoppingCart = new ShoppingCart(
+        addProductRequest.idUser,
+        this.dateGenerator.getDate(),
+      );
+    }
+
+    currentShoppingCart.addProduct(
       addProductRequest.idProduct,
       addProductRequest.quantity,
     );
-    this.shoppingCartRepository.save(shoppingCart);
+    this.shoppingCartRepository.save(currentShoppingCart);
   }
 }

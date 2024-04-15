@@ -1,7 +1,7 @@
 import { ShoppingCart } from '../domain/shopping.cart';
 
 export class InMemoryShoppingCartRepository {
-  getByUserId(): ShoppingCart {
+  getByUserId(id: string): ShoppingCart {
     return;
   }
 
