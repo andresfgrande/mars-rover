@@ -3,10 +3,17 @@ import {
   ShoppingCartController,
 } from '../../../src/shopping-cart/api/controllers/shopping-cart.controller';
 import { ProductAdder } from '../../../src/shopping-cart/context/shopping-cart/services/ProductAdder.service';
+import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/in-memory-shopping-cart.repository';
+import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/dateGenerator';
 
 describe('ShoppingCart should', () => {
   it('be created', () => {
-    const productAdder = new ProductAdder();
+    const dateGenerator = new DateGenerator();
+    const shoppingCartRepository = new InMemoryShoppingCartRepository();
+    const productAdder = new ProductAdder(
+      shoppingCartRepository,
+      dateGenerator,
+    );
     const shoppingCartController = new ShoppingCartController(productAdder);
     const idUser = 'andres';
     const idProduct = '1';

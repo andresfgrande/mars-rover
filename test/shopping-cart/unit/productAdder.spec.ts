@@ -2,11 +2,19 @@ import { ProductAdder } from '../../../src/shopping-cart/context/shopping-cart/s
 import { ShoppingCart } from '../../../src/shopping-cart/context/shopping-cart/domain/shopping.cart';
 import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/in-memory-shopping-cart.repository';
 import { mock } from 'jest-mock-extended';
+import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/dateGenerator';
 
 describe('ProductAdder', () => {
   it('Should add product', () => {
+    const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
-    const productAdder = new ProductAdder(shoppingCartRepository);
+    const productAdder = new ProductAdder(
+      shoppingCartRepository,
+      dateGenerator,
+    );
+
+    const expectedDate = new Date().toISOString();
+    dateGenerator.getDate.mockReturnValue(expectedDate);
 
     productAdder.execute({
       idUser: 'andres',
@@ -15,6 +23,7 @@ describe('ProductAdder', () => {
     });
 
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
+      creationDate: expectedDate,
       idUser: 'andres',
       products: [{ id: 'the-hobbit', quantity: 2 }],
     });
