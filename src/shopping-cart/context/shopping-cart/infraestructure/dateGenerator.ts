@@ -1,5 +1,5 @@
 export class DateGenerator {
   getDate(): string {
-    return undefined;
+    return new Date().toISOString();
   }
 }

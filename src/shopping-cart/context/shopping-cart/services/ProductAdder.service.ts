@@ -22,7 +22,7 @@ export class ProductAdder {
     let currentShoppingCart = this.shoppingCartRepository.getByUserId(
       addProductRequest.idUser,
     );
-
+    //Get product y checks (si product existe en la tienda)
     if (!currentShoppingCart) {
       currentShoppingCart = new ShoppingCart(
         addProductRequest.idUser,

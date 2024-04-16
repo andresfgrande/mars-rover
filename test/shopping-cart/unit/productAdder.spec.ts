@@ -34,26 +34,6 @@ describe('ProductAdder', () => {
   });
 
   it('Should add 1 product to existing shopping cart', () => {
-    /**
-     *
-     * Given I add 2 units of "The Hobbit" to my shopping basket
-     * And I add 5 units of "Breaking Bad"
-     * When I check the content of my shopping basket
-     * Then it should contain the following information:
-     * - Creation date : 01/03/2021
-     * - 2 x The Hobbit   // 2 x 5.00 = €10.00
-     * - 5 x Breaking Bad // 5 x 7.00 = €35.00
-     * - Total: €45.00
-     * ```
-     * Products available (in-memory repository):
-     * - Books
-     *    - 10001: Lord of the Rings - €10.00
-     *    - 10002: The Hobbit - €5.00
-     * - DVDs
-     *    - 20001: Game of Thrones - €9.00
-     *    - 20110: Breaking Bad - €7.00
-     */
-
     const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
     const productAdder = new ProductAdder(
@@ -90,5 +70,10 @@ describe('ProductAdder', () => {
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(
       expectedShoppingCart,
     );
+
+    //expect(productAdder.execute({})).rejects.toThrowError('error text')
   });
 });
+
+//add product de producto que ya existe en la shopping cart y se tengan que sumar cantidades
+//comprobar que cuando se hace add product que el producto existe

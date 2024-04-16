@@ -1,3 +1,9 @@
+interface ShoppingCartPrimitives {
+  creationDate: string;
+  idUser: string;
+  products: { id: string; quantity: number }[];
+}
+
 export class ShoppingCart {
   private creationDate: string;
   private idUser: string;
@@ -11,11 +17,9 @@ export class ShoppingCart {
     this.creationDate = creationDate;
   }
 
-  static fromPrimitives(shoppingCartPrimitives: {
-    creationDate: string;
-    idUser: string;
-    products: { id: string; quantity: number }[];
-  }): ShoppingCart {
+  static fromPrimitives(
+    shoppingCartPrimitives: ShoppingCartPrimitives,
+  ): ShoppingCart {
     const shoppingCart = new ShoppingCart(
       shoppingCartPrimitives.idUser,
       shoppingCartPrimitives.creationDate,
@@ -27,7 +31,20 @@ export class ShoppingCart {
     return shoppingCart;
   }
 
+  toPrimitives(): ShoppingCartPrimitives {
+    const content: ShoppingCartPrimitives = {
+      creationDate: this.creationDate,
+      idUser: this.idUser,
+      products: this.products,
+    };
+    return content;
+  }
+
   addProduct(idProduct: string, quantity: number): void {
     this.products.push({ id: idProduct, quantity: quantity });
+  }
+
+  getUserId(): string {
+    return this.idUser;
   }
 }
