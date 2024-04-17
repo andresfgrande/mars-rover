@@ -3,29 +3,36 @@ import { ShoppingCart } from '../../../src/shopping-cart/context/shopping-cart/d
 import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryShoppingCartRepository';
 import { mock } from 'jest-mock-extended';
 import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
+import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
+import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('ProductAdder', () => {
   it('Should add product', () => {
     const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
+    const productRepository = mock<InMemoryProductRepository>();
     const productAdder = new ProductAdder(
       shoppingCartRepository,
       dateGenerator,
+      productRepository,
     );
 
     const expectedDate = new Date().toISOString();
     dateGenerator.getDate.mockReturnValue(expectedDate);
+    productRepository.getProductById.mockReturnValue(
+      new Product('10002', 'The Hobbit', 5),
+    );
 
     productAdder.execute({
       idUser: 'andres',
-      idProduct: 'the-hobbit',
+      idProduct: '10002',
       quantity: 2,
     });
 
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      products: [{ id: 'the-hobbit', quantity: 2 }],
+      products: [{ id: '10002', quantity: 2 }],
     });
 
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(
@@ -36,9 +43,11 @@ describe('ProductAdder', () => {
   it('Should add 1 product to existing shopping cart', () => {
     const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
+    const productRepository = mock<InMemoryProductRepository>();
     const productAdder = new ProductAdder(
       shoppingCartRepository,
       dateGenerator,
+      productRepository,
     );
 
     const expectedDate = new Date().toISOString();
@@ -51,7 +60,9 @@ describe('ProductAdder', () => {
         products: [{ id: '10002', quantity: 2 }],
       }),
     );
-
+    productRepository.getProductById.mockReturnValue(
+      new Product('10002', 'The Hobbit', 5),
+    );
     productAdder.execute({
       idUser: 'andres',
       idProduct: '20110',
@@ -75,9 +86,11 @@ describe('ProductAdder', () => {
   it('Should sum quantities in case product exists in cart', () => {
     const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
+    const productRepository = mock<InMemoryProductRepository>();
     const productAdder = new ProductAdder(
       shoppingCartRepository,
       dateGenerator,
+      productRepository,
     );
 
     const expectedDate = new Date().toISOString();
@@ -90,7 +103,9 @@ describe('ProductAdder', () => {
         products: [{ id: '10002', quantity: 2 }],
       }),
     );
-
+    productRepository.getProductById.mockReturnValue(
+      new Product('10002', 'The Hobbit', 5),
+    );
     productAdder.execute({
       idUser: 'andres',
       idProduct: '10002',
@@ -109,35 +124,24 @@ describe('ProductAdder', () => {
   });
 
   it('Should throw error in case product does not exist', () => {
-    //expect(productAdder.execute({})).rejects.toThrowError('error text')
-  });
-
-  it('Should throw error in case product does not exist', () => {
     const dateGenerator = mock<DateGenerator>();
     const shoppingCartRepository = mock<InMemoryShoppingCartRepository>();
+    const productRepository = mock<InMemoryProductRepository>();
     const productAdder = new ProductAdder(
       shoppingCartRepository,
       dateGenerator,
+      productRepository,
     );
-
     const expectedDate = new Date().toISOString();
     dateGenerator.getDate.mockReturnValue(expectedDate);
-
-    productAdder.execute({
+    productRepository.getProductById.mockReturnValue(undefined);
+    const productRequest = {
       idUser: 'andres',
-      idProduct: 'the-hobbit',
+      idProduct: '20110',
       quantity: 2,
-    });
+    };
 
-    const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
-      creationDate: expectedDate,
-      idUser: 'andres',
-      products: [{ id: 'the-hobbit', quantity: 2 }],
-    });
-
-    expect(shoppingCartRepository.save).toHaveBeenCalledWith(
-      expectedShoppingCart,
-    );
+    expect(() => productAdder.execute(productRequest)).toThrow();
   });
 });
 

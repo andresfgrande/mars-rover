@@ -150,6 +150,7 @@ describe('ShoppingCart should', () => {
     const productAdder = new ProductAdder(
       shoppingCartRepository,
       dateGenerator,
+      productRepository,
     );
     const shoppingCartContentCreator = new ShoppingCartContentCreator(
       shoppingCartRepository,
