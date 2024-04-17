@@ -145,5 +145,5 @@ describe('ProductAdder', () => {
   });
 });
 
-//add product de producto que ya existe en la shopping cart y se tengan que sumar cantidades
-//comprobar que cuando se hace add product que el producto existe, si no existe devolver error
+//add product de producto que ya existe en la shopping cart y se tengan que sumar cantidades --OK
+//comprobar que cuando se hace add product que el producto existe, si no existe devolver error --OK
