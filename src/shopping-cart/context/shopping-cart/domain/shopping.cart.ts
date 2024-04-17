@@ -41,6 +41,12 @@ export class ShoppingCart {
   }
 
   addProduct(idProduct: string, quantity: number): void {
+    const existingItem = this.products.find((item) => item.id === idProduct);
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+      return;
+    }
     this.products.push({ id: idProduct, quantity: quantity });
   }
 
