@@ -2,6 +2,7 @@ import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppi
 import { DateGenerator } from '../infrastructure/dateGenerator';
 import { CreationDate, ShoppingCart, UserId } from '../domain/shopping.cart';
 import { InMemoryProductRepository } from '../infrastructure/inMemoryProductRepository';
+import { ProductId } from '../domain/product';
 
 export interface AddProductAdderRequest {
   idUser: string;
@@ -16,17 +17,13 @@ export class ProductAdder {
     private productRepository: InMemoryProductRepository,
   ) {}
 
-  execute(addProductRequest: {
-    idUser: string;
-    quantity: number;
-    idProduct: string;
-  }) {
+  execute(addProductRequest: AddProductAdderRequest) {
     let currentShoppingCart = this.shoppingCartRepository.getByUserId(
-      addProductRequest.idUser,
+      new UserId(addProductRequest.idUser),
     );
 
     const product = this.productRepository.getProductById(
-      addProductRequest.idProduct,
+      new ProductId(addProductRequest.idProduct),
     );
     if (!product) {
       throw new Error('product does not exist');

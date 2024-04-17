@@ -19,7 +19,9 @@ describe('Shopping Cart Repository should', () => {
     shoppingCart.addProduct('10002', 5);
 
     shoppingCartRepository.save(shoppingCart);
-    const savedShoppingCart = shoppingCartRepository.getByUserId(idUser);
+    const savedShoppingCart = shoppingCartRepository.getByUserId(
+      new UserId(idUser),
+    );
 
     expect(shoppingCart).toStrictEqual(savedShoppingCart);
   });

@@ -22,7 +22,9 @@ describe('Product Repository', () => {
 
     productRepository.save(newProduct);
 
-    const savedProduct = productRepository.getProductById(idProduct);
+    const savedProduct = productRepository.getProductById(
+      new ProductId(idProduct),
+    );
 
     expect(savedProduct).toStrictEqual(newProduct);
   });

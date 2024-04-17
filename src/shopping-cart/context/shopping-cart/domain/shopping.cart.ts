@@ -7,7 +7,6 @@ interface ShoppingCartPrimitives {
 }
 
 //Wrap primitives and strings
-
 export class UserId {
   constructor(private id: string) {}
 
