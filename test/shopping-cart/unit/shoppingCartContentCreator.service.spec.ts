@@ -24,7 +24,7 @@ describe('ShoppingCartContentCreator should', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        products: [{ id: '10002', quantity: 2 }],
+        items: [{ id: '10002', unitPrice: 2, quantity: 2, total: 14 }],
       }),
     );
 

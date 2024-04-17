@@ -1,8 +1,10 @@
 import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppingCartRepository';
 import { DateGenerator } from '../infrastructure/dateGenerator';
-import { CreationDate, ShoppingCart, UserId } from '../domain/shopping.cart';
+import { ShoppingCart } from '../domain/shopping.cart';
 import { InMemoryProductRepository } from '../infrastructure/inMemoryProductRepository';
 import { ProductId } from '../domain/product';
+import { UserId } from '../domain/userId';
+import { CreationDate } from '../domain/creationDate';
 
 export interface AddProductAdderRequest {
   idUser: string;
@@ -38,6 +40,7 @@ export class ProductAdder {
 
     currentShoppingCart.addProduct(
       addProductRequest.idProduct,
+      product.toPrimitives().price,
       addProductRequest.quantity,
     );
     this.shoppingCartRepository.save(currentShoppingCart);

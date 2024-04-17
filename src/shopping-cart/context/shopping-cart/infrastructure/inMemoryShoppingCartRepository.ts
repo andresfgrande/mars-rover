@@ -1,4 +1,5 @@
-import { ShoppingCart, UserId } from '../domain/shopping.cart';
+import { ShoppingCart } from '../domain/shopping.cart';
+import { UserId } from '../domain/userId';
 
 export class InMemoryShoppingCartRepository {
   private carts = new Map<string, ShoppingCart>();

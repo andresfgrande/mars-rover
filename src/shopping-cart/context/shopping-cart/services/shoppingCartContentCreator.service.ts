@@ -4,8 +4,8 @@ import {
 } from '../../../api/controllers/shoppingCart.controller';
 import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppingCartRepository';
 import { InMemoryProductRepository } from '../infrastructure/inMemoryProductRepository';
-import { UserId } from '../domain/shopping.cart';
 import { ProductId } from '../domain/product';
+import { UserId } from '../domain/userId';
 
 export class ShoppingCartContentCreator {
   constructor(
@@ -20,7 +20,7 @@ export class ShoppingCartContentCreator {
 
     const shoppingCartContent = shoppingCart.toPrimitives();
 
-    const products = shoppingCartContent.products;
+    const products = shoppingCartContent.items;
 
     const orders = products.map((item: { id: string; quantity: number }) => {
       const currentProduct = this.productRepository.getProductById(

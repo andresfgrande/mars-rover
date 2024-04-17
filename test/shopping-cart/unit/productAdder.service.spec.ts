@@ -10,6 +10,8 @@ import {
   ProductId,
   ProductName,
 } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
+import { UserId } from '../../../src/shopping-cart/context/shopping-cart/domain/userId';
+import { CreationDate } from '../../../src/shopping-cart/context/shopping-cart/domain/creationDate';
 
 describe('ProductAdder', () => {
   it('Should add product', () => {
@@ -24,6 +26,11 @@ describe('ProductAdder', () => {
 
     const expectedDate = new Date().toISOString();
     dateGenerator.getDate.mockReturnValue(expectedDate);
+
+    shoppingCartRepository.getByUserId.mockReturnValue(
+      new ShoppingCart(new UserId('andres'), new CreationDate(expectedDate)),
+    );
+
     productRepository.getProductById.mockReturnValue(
       new Product(
         new ProductId('10002'),
@@ -41,7 +48,7 @@ describe('ProductAdder', () => {
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      products: [{ id: '10002', quantity: 2 }],
+      items: [{ id: '10002', unitPrice: 5, quantity: 2, total: 10 }],
     });
 
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(
@@ -66,7 +73,7 @@ describe('ProductAdder', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        products: [{ id: '10002', quantity: 2 }],
+        items: [{ id: '10002', unitPrice: 2, quantity: 2, total: 4 }],
       }),
     );
     productRepository.getProductById.mockReturnValue(
@@ -85,9 +92,9 @@ describe('ProductAdder', () => {
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      products: [
-        { id: '10002', quantity: 2 },
-        { id: '20110', quantity: 5 },
+      items: [
+        { id: '10002', unitPrice: 2, quantity: 2, total: 4 },
+        { id: '20110', unitPrice: 5, quantity: 5, total: 25 },
       ],
     });
 
@@ -113,7 +120,7 @@ describe('ProductAdder', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        products: [{ id: '10002', quantity: 2 }],
+        items: [{ id: '10002', unitPrice: 2, quantity: 2, total: 4 }],
       }),
     );
     productRepository.getProductById.mockReturnValue(
@@ -132,7 +139,7 @@ describe('ProductAdder', () => {
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      products: [{ id: '10002', quantity: 7 }],
+      items: [{ id: '10002', unitPrice: 2, quantity: 7, total: 14 }],
     });
 
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(

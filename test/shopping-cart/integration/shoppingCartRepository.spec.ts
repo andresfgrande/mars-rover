@@ -1,10 +1,8 @@
 import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryShoppingCartRepository';
 import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
-import {
-  CreationDate,
-  ShoppingCart,
-  UserId,
-} from '../../../src/shopping-cart/context/shopping-cart/domain/shopping.cart';
+import { ShoppingCart } from '../../../src/shopping-cart/context/shopping-cart/domain/shopping.cart';
+import { UserId } from '../../../src/shopping-cart/context/shopping-cart/domain/userId';
+import { CreationDate } from '../../../src/shopping-cart/context/shopping-cart/domain/creationDate';
 
 describe('Shopping Cart Repository should', () => {
   it('be able to save a new shopping cart when repo has no products', () => {
@@ -16,7 +14,7 @@ describe('Shopping Cart Repository should', () => {
       new UserId(idUser),
       new CreationDate(creationDate),
     );
-    shoppingCart.addProduct('10002', 5);
+    shoppingCart.addProduct('10002', 5, 1);
 
     shoppingCartRepository.save(shoppingCart);
     const savedShoppingCart = shoppingCartRepository.getByUserId(
