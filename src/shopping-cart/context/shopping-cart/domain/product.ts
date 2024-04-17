@@ -10,11 +10,36 @@ interface ProductPrimitives {
   price: number;
 }
 
+//Wrap primitives and strings
+export class ProductId {
+  constructor(private id: string) {}
+
+  toString() {
+    return this.id;
+  }
+}
+
+export class ProductName {
+  constructor(private name: string) {}
+
+  toString() {
+    return this.name;
+  }
+}
+
+export class Price {
+  constructor(private price: number) {}
+
+  toNumber() {
+    return this.price;
+  }
+}
+
 export class Product {
   constructor(
-    private idProduct: string,
-    private name: string,
-    private price: number,
+    private idProduct: ProductId,
+    private name: ProductName,
+    private price: Price,
   ) {}
 
   static fromPrimitives(productPrimitives: {
@@ -22,25 +47,24 @@ export class Product {
     name: string;
     price: number;
   }): Product {
-    const product = new Product(
-      productPrimitives.idProduct,
-      productPrimitives.name,
-      productPrimitives.price,
+    return new Product(
+      new ProductId(productPrimitives.idProduct),
+      new ProductName(productPrimitives.name),
+      new Price(productPrimitives.price),
     );
-    return product;
   }
 
   toPrimitives(): ProductPrimitives {
     const content: ProductPrimitives = {
-      idProduct: this.idProduct,
-      name: this.name,
-      price: this.price,
+      idProduct: this.idProduct.toString(),
+      name: this.name.toString(),
+      price: this.price.toNumber(),
     };
 
     return content;
   }
 
   getProductId(): string {
-    return this.idProduct;
+    return this.idProduct.toString();
   }
 }

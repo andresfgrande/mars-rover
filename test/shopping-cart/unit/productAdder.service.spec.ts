@@ -4,7 +4,12 @@ import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/conte
 import { mock } from 'jest-mock-extended';
 import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
 import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
-import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
+import {
+  Price,
+  Product,
+  ProductId,
+  ProductName,
+} from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('ProductAdder', () => {
   it('Should add product', () => {
@@ -20,7 +25,11 @@ describe('ProductAdder', () => {
     const expectedDate = new Date().toISOString();
     dateGenerator.getDate.mockReturnValue(expectedDate);
     productRepository.getProductById.mockReturnValue(
-      new Product('10002', 'The Hobbit', 5),
+      new Product(
+        new ProductId('10002'),
+        new ProductName('The Hobbit'),
+        new Price(5),
+      ),
     );
 
     productAdder.execute({
@@ -61,7 +70,11 @@ describe('ProductAdder', () => {
       }),
     );
     productRepository.getProductById.mockReturnValue(
-      new Product('10002', 'The Hobbit', 5),
+      new Product(
+        new ProductId('10002'),
+        new ProductName('The Hobbit'),
+        new Price(5),
+      ),
     );
     productAdder.execute({
       idUser: 'andres',
@@ -104,7 +117,11 @@ describe('ProductAdder', () => {
       }),
     );
     productRepository.getProductById.mockReturnValue(
-      new Product('10002', 'The Hobbit', 5),
+      new Product(
+        new ProductId('10002'),
+        new ProductName('The Hobbit'),
+        new Price(5),
+      ),
     );
     productAdder.execute({
       idUser: 'andres',

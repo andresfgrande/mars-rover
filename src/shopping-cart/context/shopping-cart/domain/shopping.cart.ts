@@ -4,6 +4,7 @@ interface ShoppingCartPrimitives {
   products: { id: string; quantity: number }[];
 }
 
+//Wrap primitives and strings, more than 2 attributes, class collections
 export class ShoppingCart {
   private creationDate: string;
   private idUser: string;

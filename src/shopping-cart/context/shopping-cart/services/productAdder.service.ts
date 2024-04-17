@@ -25,7 +25,6 @@ export class ProductAdder {
       addProductRequest.idUser,
     );
 
-    //Get product y checks (si product existe en la tienda)
     const product = this.productRepository.getProductById(
       addProductRequest.idProduct,
     );

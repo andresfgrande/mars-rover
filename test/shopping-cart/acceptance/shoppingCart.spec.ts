@@ -8,7 +8,12 @@ import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/conte
 import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
 import { ShoppingCartContentCreator } from '../../../src/shopping-cart/context/shopping-cart/services/shoppingCartContentCreator.service';
 import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
-import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
+import {
+  Price,
+  Product,
+  ProductId,
+  ProductName,
+} from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('ShoppingCart should', () => {
   beforeEach(() => {
@@ -26,7 +31,11 @@ describe('ShoppingCart should', () => {
     const dateGenerator = new DateGenerator();
     const shoppingCartRepository = new InMemoryShoppingCartRepository();
     const productRepository = new InMemoryProductRepository();
-    const newProduct = new Product('10002', 'The Hobbit', 5);
+    const newProduct = new Product(
+      new ProductId('10002'),
+      new ProductName('The Hobbit'),
+      new Price(5),
+    );
     productRepository.save(newProduct);
 
     const productAdder = new ProductAdder(
@@ -78,8 +87,16 @@ describe('ShoppingCart should', () => {
     const dateGenerator = new DateGenerator();
     const shoppingCartRepository = new InMemoryShoppingCartRepository();
     const productRepository = new InMemoryProductRepository();
-    const newProduct = new Product('10002', 'The Hobbit', 5);
-    const newProduct2 = new Product('20110', 'Breaking Bad', 7);
+    const newProduct = new Product(
+      new ProductId('10002'),
+      new ProductName('The Hobbit'),
+      new Price(5),
+    );
+    const newProduct2 = new Product(
+      new ProductId('20110'),
+      new ProductName('Breaking Bad'),
+      new Price(7),
+    );
     productRepository.save(newProduct);
     productRepository.save(newProduct2);
 
@@ -144,8 +161,16 @@ describe('ShoppingCart should', () => {
     const dateGenerator = new DateGenerator();
     const shoppingCartRepository = new InMemoryShoppingCartRepository();
     const productRepository = new InMemoryProductRepository();
-    const newProduct = new Product('10002', 'The Hobbit', 5);
-    const newProduct2 = new Product('20110', 'Breaking Bad', 7);
+    const newProduct = new Product(
+      new ProductId('10002'),
+      new ProductName('The Hobbit'),
+      new Price(5),
+    );
+    const newProduct2 = new Product(
+      new ProductId('20110'),
+      new ProductName('Breaking Bad'),
+      new Price(7),
+    );
     productRepository.save(newProduct);
     productRepository.save(newProduct2);
 
