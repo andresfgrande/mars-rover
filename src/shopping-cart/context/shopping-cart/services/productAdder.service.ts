@@ -1,6 +1,6 @@
 import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppingCartRepository';
 import { DateGenerator } from '../infrastructure/dateGenerator';
-import { ShoppingCart } from '../domain/shopping.cart';
+import { CreationDate, ShoppingCart, UserId } from '../domain/shopping.cart';
 import { InMemoryProductRepository } from '../infrastructure/inMemoryProductRepository';
 
 export interface AddProductAdderRequest {
@@ -34,8 +34,8 @@ export class ProductAdder {
 
     if (!currentShoppingCart) {
       currentShoppingCart = new ShoppingCart(
-        addProductRequest.idUser,
-        this.dateGenerator.getDate(),
+        new UserId(addProductRequest.idUser),
+        new CreationDate(this.dateGenerator.getDate()),
       );
     }
 
