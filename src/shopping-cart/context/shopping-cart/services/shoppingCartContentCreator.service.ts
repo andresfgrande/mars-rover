@@ -1,9 +1,9 @@
 import {
   ContentRequest,
   ContentResponse,
-} from '../../../api/controllers/shopping-cart.controller';
-import { InMemoryShoppingCartRepository } from '../infraestructure/in-memory-shopping-cart.repository';
-import { InMemoryProductRepository } from '../infraestructure/inMemoryProductRepository';
+} from '../../../api/controllers/shoppingCart.controller';
+import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppingCartRepository';
+import { InMemoryProductRepository } from '../infrastructure/inMemoryProductRepository';
 
 export class ShoppingCartContentCreator {
   constructor(

@@ -1,4 +1,4 @@
-import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/dateGenerator';
+import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
 
 describe('Date Generator should', () => {
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import { ProductAdder } from '../../context/shopping-cart/services/ProductAdder.service';
-import { ShoppingCartContentCreator } from '../../context/shopping-cart/services/ShoppingCartContentCreator';
+import { ProductAdder } from '../../context/shopping-cart/services/productAdder.service';
+import { ShoppingCartContentCreator } from '../../context/shopping-cart/services/shoppingCartContentCreator.service';
 
 export interface ContentResponseDTO {
   creationDate: string;

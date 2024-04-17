@@ -1,5 +1,5 @@
-import { InMemoryShoppingCartRepository } from '../infraestructure/in-memory-shopping-cart.repository';
-import { DateGenerator } from '../infraestructure/dateGenerator';
+import { InMemoryShoppingCartRepository } from '../infrastructure/inMemoryShoppingCartRepository';
+import { DateGenerator } from '../infrastructure/dateGenerator';
 import { ShoppingCart } from '../domain/shopping.cart';
 
 export interface AddProductAdderRequest {

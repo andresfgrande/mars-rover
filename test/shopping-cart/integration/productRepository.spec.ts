@@ -1,4 +1,4 @@
-import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/inMemoryProductRepository';
+import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
 import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('Product Repository', () => {

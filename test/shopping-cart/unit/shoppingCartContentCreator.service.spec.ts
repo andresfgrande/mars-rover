@@ -1,10 +1,10 @@
-import { ShoppingCartContentCreator } from '../../../src/shopping-cart/context/shopping-cart/services/ShoppingCartContentCreator';
-import { ContentResponse } from '../../../src/shopping-cart/api/controllers/shopping-cart.controller';
+import { ShoppingCartContentCreator } from '../../../src/shopping-cart/context/shopping-cart/services/shoppingCartContentCreator.service';
+import { ContentResponse } from '../../../src/shopping-cart/api/controllers/shoppingCart.controller';
 import { mock } from 'jest-mock-extended';
-import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/in-memory-shopping-cart.repository';
+import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryShoppingCartRepository';
 import { ShoppingCart } from '../../../src/shopping-cart/context/shopping-cart/domain/shopping.cart';
-import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/dateGenerator';
-import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/inMemoryProductRepository';
+import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
+import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
 import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('ShoppingCartContentCreator should', () => {

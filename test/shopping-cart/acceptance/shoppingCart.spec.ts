@@ -2,12 +2,12 @@ import {
   ContentRequestDTO,
   ContentResponseDTO,
   ShoppingCartController,
-} from '../../../src/shopping-cart/api/controllers/shopping-cart.controller';
-import { ProductAdder } from '../../../src/shopping-cart/context/shopping-cart/services/ProductAdder.service';
-import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/in-memory-shopping-cart.repository';
-import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/dateGenerator';
-import { ShoppingCartContentCreator } from '../../../src/shopping-cart/context/shopping-cart/services/ShoppingCartContentCreator';
-import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infraestructure/inMemoryProductRepository';
+} from '../../../src/shopping-cart/api/controllers/shoppingCart.controller';
+import { ProductAdder } from '../../../src/shopping-cart/context/shopping-cart/services/productAdder.service';
+import { InMemoryShoppingCartRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryShoppingCartRepository';
+import { DateGenerator } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/dateGenerator';
+import { ShoppingCartContentCreator } from '../../../src/shopping-cart/context/shopping-cart/services/shoppingCartContentCreator.service';
+import { InMemoryProductRepository } from '../../../src/shopping-cart/context/shopping-cart/infrastructure/inMemoryProductRepository';
 import { Product } from '../../../src/shopping-cart/context/shopping-cart/domain/product';
 
 describe('ShoppingCart should', () => {
