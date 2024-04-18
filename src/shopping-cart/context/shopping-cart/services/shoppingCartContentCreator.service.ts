@@ -20,9 +20,9 @@ export class ShoppingCartContentCreator {
 
     const shoppingCartContent = shoppingCart.toPrimitives();
 
-    const products = shoppingCartContent.items;
+    const items = shoppingCartContent.items;
 
-    const orders = products.map((item: { id: string; quantity: number }) => {
+    const orders = items.map((item) => {
       const currentProduct = this.productRepository.getProductById(
         new ProductId(item.id),
       );
@@ -31,19 +31,17 @@ export class ShoppingCartContentCreator {
         idProduct: currentProductPrimitives.idProduct,
         name: currentProductPrimitives.name,
         unitPrice: currentProductPrimitives.price,
-        total: item.quantity * currentProductPrimitives.price,
+        total: item.total,
         quantity: item.quantity,
       };
     });
 
     const totalPrice = shoppingCart.getCartTotal();
 
-    const response = {
+    return {
       creationDate: shoppingCartContent.creationDate,
       orders: orders,
       totalPrice: totalPrice,
     };
-
-    return response;
   }
 }
