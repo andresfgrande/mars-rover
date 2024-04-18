@@ -48,4 +48,12 @@ export class ShoppingCartItems {
       return item.toPrimitives();
     });
   }
+
+  getTotal(): number {
+    let totalPrice = 0;
+    this.items.forEach((item) => {
+      totalPrice += item.getTotal();
+    });
+    return totalPrice;
+  }
 }

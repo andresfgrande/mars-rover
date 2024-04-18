@@ -61,4 +61,8 @@ export class ShoppingCart {
   getUserId(): string {
     return this.idUser.toString();
   }
+
+  getCartTotal(): number {
+    return this.items.getTotal();
+  }
 }

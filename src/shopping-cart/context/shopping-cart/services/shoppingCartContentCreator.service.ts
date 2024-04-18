@@ -36,10 +36,7 @@ export class ShoppingCartContentCreator {
       };
     });
 
-    let totalPrice = 0;
-    orders.forEach((item) => {
-      totalPrice += item.quantity * item.unitPrice;
-    });
+    const totalPrice = shoppingCart.getCartTotal();
 
     const response = {
       creationDate: shoppingCartContent.creationDate,
