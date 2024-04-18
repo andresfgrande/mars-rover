@@ -1,4 +1,4 @@
-import { Price, ProductId } from './product';
+import { Price, ProductId, ProductName } from './product';
 import {
   ShoppingCartItem,
   ShoppingCartItemInterface,
@@ -20,6 +20,7 @@ export class ShoppingCartItems {
     itemsPrimitives.map((item) => {
       const shoppingCartItem = new ShoppingCartItem(
         new ProductId(item.id),
+        new ProductName(item.name),
         new Price(item.unitPrice),
         new ProductQuantity(item.quantity),
       );

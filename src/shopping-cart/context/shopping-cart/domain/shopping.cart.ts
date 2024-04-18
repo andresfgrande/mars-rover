@@ -1,4 +1,4 @@
-import { Price, ProductId } from './product';
+import { Price, ProductId, ProductName } from './product';
 import { ShoppingCartItems } from './shoppingCartItems';
 import {
   ShoppingCartItem,
@@ -48,10 +48,16 @@ export class ShoppingCart {
     return content;
   }
 
-  addItem(idProduct: string, unitPrice: number, quantity: number): void {
+  addItem(
+    idProduct: string,
+    name: string,
+    unitPrice: number,
+    quantity: number,
+  ): void {
     this.items.addItem(
       new ShoppingCartItem(
         new ProductId(idProduct),
+        new ProductName(name),
         new Price(unitPrice),
         new ProductQuantity(quantity),
       ),

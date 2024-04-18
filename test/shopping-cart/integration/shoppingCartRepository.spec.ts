@@ -14,7 +14,7 @@ describe('Shopping Cart Repository should', () => {
       new UserId(idUser),
       new CreationDate(creationDate),
     );
-    shoppingCart.addItem('10002', 5, 1);
+    shoppingCart.addItem('10002', 'The Hobbit', 5, 1);
 
     shoppingCartRepository.save(shoppingCart);
     const savedShoppingCart = shoppingCartRepository.getByUserId(

@@ -6,7 +6,7 @@ import { ProductId } from '../domain/product';
 import { UserId } from '../domain/userId';
 import { CreationDate } from '../domain/creationDate';
 
-export interface AddProductAdderRequest {
+export interface AddItemAdderRequest {
   idUser: string;
   quantity: number;
   idProduct: string;
@@ -19,7 +19,7 @@ export class ProductAdder {
     private productRepository: InMemoryProductRepository,
   ) {}
 
-  execute(addProductRequest: AddProductAdderRequest) {
+  execute(addProductRequest: AddItemAdderRequest) {
     let currentShoppingCart = this.shoppingCartRepository.getByUserId(
       new UserId(addProductRequest.idUser),
     );
@@ -40,6 +40,7 @@ export class ProductAdder {
 
     currentShoppingCart.addItem(
       addProductRequest.idProduct,
+      product.toPrimitives().name,
       product.toPrimitives().price,
       addProductRequest.quantity,
     );

@@ -48,7 +48,15 @@ describe('ProductAdder', () => {
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      items: [{ id: '10002', unitPrice: 5, quantity: 2, total: 10 }],
+      items: [
+        {
+          id: '10002',
+          name: 'The Hobbit',
+          unitPrice: 5,
+          quantity: 2,
+          total: 10,
+        },
+      ],
     });
 
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(
@@ -73,13 +81,21 @@ describe('ProductAdder', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        items: [{ id: '10002', unitPrice: 2, quantity: 2, total: 4 }],
+        items: [
+          {
+            id: '10002',
+            name: 'The Hobbit',
+            unitPrice: 2,
+            quantity: 2,
+            total: 4,
+          },
+        ],
       }),
     );
     productRepository.getProductById.mockReturnValue(
       new Product(
-        new ProductId('10002'),
-        new ProductName('The Hobbit'),
+        new ProductId('20110'),
+        new ProductName('Breaking Bad'),
         new Price(5),
       ),
     );
@@ -93,8 +109,20 @@ describe('ProductAdder', () => {
       creationDate: expectedDate,
       idUser: 'andres',
       items: [
-        { id: '10002', unitPrice: 2, quantity: 2, total: 4 },
-        { id: '20110', unitPrice: 5, quantity: 5, total: 25 },
+        {
+          id: '10002',
+          name: 'The Hobbit',
+          unitPrice: 2,
+          quantity: 2,
+          total: 4,
+        },
+        {
+          id: '20110',
+          name: 'Breaking Bad',
+          unitPrice: 5,
+          quantity: 5,
+          total: 25,
+        },
       ],
     });
 
@@ -120,7 +148,15 @@ describe('ProductAdder', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        items: [{ id: '10002', unitPrice: 2, quantity: 2, total: 4 }],
+        items: [
+          {
+            id: '10002',
+            name: 'The Hobbit',
+            unitPrice: 2,
+            quantity: 2,
+            total: 4,
+          },
+        ],
       }),
     );
     productRepository.getProductById.mockReturnValue(
@@ -139,7 +175,15 @@ describe('ProductAdder', () => {
     const expectedShoppingCart: ShoppingCart = ShoppingCart.fromPrimitives({
       creationDate: expectedDate,
       idUser: 'andres',
-      items: [{ id: '10002', unitPrice: 2, quantity: 7, total: 14 }],
+      items: [
+        {
+          id: '10002',
+          name: 'The Hobbit',
+          unitPrice: 2,
+          quantity: 7,
+          total: 14,
+        },
+      ],
     });
 
     expect(shoppingCartRepository.save).toHaveBeenCalledWith(

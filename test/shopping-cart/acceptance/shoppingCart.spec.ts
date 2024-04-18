@@ -53,9 +53,10 @@ describe('ShoppingCart should', () => {
     );
     const idUser = 'andres';
     const idProduct = '10002';
+    const name = 'The Hobbit';
     const quantity = 2;
 
-    shoppingCartController.addProduct({ idUser, idProduct, quantity });
+    shoppingCartController.addProduct({ idUser, name, idProduct, quantity });
 
     const expectedShoppingCart = {
       creationDate: new Date().toISOString(),
@@ -118,11 +119,13 @@ describe('ShoppingCart should', () => {
     //Product 1
     let idProduct = '10002';
     let quantity = 2;
-    shoppingCartController.addProduct({ idUser, idProduct, quantity });
+    let name = 'The Hobbit';
+    shoppingCartController.addProduct({ idUser, name, idProduct, quantity });
     //Product 2
     idProduct = '20110';
     quantity = 5;
-    shoppingCartController.addProduct({ idUser, idProduct, quantity });
+    name = 'Breaking Bad';
+    shoppingCartController.addProduct({ idUser, name, idProduct, quantity });
 
     const expectedShoppingCart = {
       creationDate: new Date().toISOString(),
@@ -192,11 +195,13 @@ describe('ShoppingCart should', () => {
     //Product 1
     let idProduct = '10002';
     let quantity = 2;
-    shoppingCartController.addProduct({ idUser, idProduct, quantity });
+    let name = 'The Hobbit';
+    shoppingCartController.addProduct({ idUser, name, idProduct, quantity });
     //Product 2
     idProduct = '10002';
     quantity = 5;
-    shoppingCartController.addProduct({ idUser, idProduct, quantity });
+    name = 'The Hobbit';
+    shoppingCartController.addProduct({ idUser, name, idProduct, quantity });
 
     const expectedShoppingCart = {
       creationDate: new Date().toISOString(),

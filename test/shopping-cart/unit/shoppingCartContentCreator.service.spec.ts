@@ -24,7 +24,15 @@ describe('ShoppingCartContentCreator should', () => {
       ShoppingCart.fromPrimitives({
         creationDate: expectedDate,
         idUser: 'andres',
-        items: [{ id: '10002', unitPrice: 5, quantity: 2, total: 10 }],
+        items: [
+          {
+            id: '10002',
+            name: 'The Hobbit',
+            unitPrice: 5,
+            quantity: 2,
+            total: 10,
+          },
+        ],
       }),
     );
 

@@ -27,6 +27,7 @@ export interface ContentResponse {
 
 export interface AddProductRequestDTO {
   idUser: string;
+  name: string;
   idProduct: string;
   quantity: number;
 }
