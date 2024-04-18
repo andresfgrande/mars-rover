@@ -1,5 +1,8 @@
 import { Price, ProductId } from './product';
-import { ShoppingCartItem } from './shoppingCartItem';
+import {
+  ShoppingCartItem,
+  ShoppingCartItemInterface,
+} from './shoppingCartItem';
 import { ProductQuantity } from './productQuantity';
 
 export class ShoppingCartItems {
@@ -10,12 +13,7 @@ export class ShoppingCartItems {
   }
 
   static fromPrimitives(
-    itemsPrimitives: {
-      id: string;
-      unitPrice: number;
-      quantity: number;
-      total: number;
-    }[],
+    itemsPrimitives: ShoppingCartItemInterface[],
   ): ShoppingCartItems {
     const shoppingCartItems = new ShoppingCartItems();
 
@@ -45,12 +43,7 @@ export class ShoppingCartItems {
     this.items.push(newItem);
   }
 
-  toPrimitives(): {
-    id: string;
-    unitPrice: number;
-    quantity: number;
-    total: number;
-  }[] {
+  toPrimitives(): ShoppingCartItemInterface[] {
     return this.items.map((item) => {
       return item.toPrimitives();
     });

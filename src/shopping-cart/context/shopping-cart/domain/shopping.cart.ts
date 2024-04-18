@@ -1,14 +1,17 @@
 import { Price, ProductId } from './product';
 import { ShoppingCartItems } from './shoppingCartItems';
-import { ShoppingCartItem } from './shoppingCartItem';
+import {
+  ShoppingCartItem,
+  ShoppingCartItemInterface,
+} from './shoppingCartItem';
 import { UserId } from './userId';
 import { ProductQuantity } from './productQuantity';
 import { CreationDate } from './creationDate';
 
-interface ShoppingCartPrimitives {
+export interface ShoppingCartPrimitives {
   creationDate: string;
   idUser: string;
-  items: { id: string; unitPrice: number; quantity: number; total: number }[];
+  items: ShoppingCartItemInterface[]; //Add name
 }
 
 export class ShoppingCart {
@@ -45,7 +48,7 @@ export class ShoppingCart {
     return content;
   }
 
-  addProduct(idProduct: string, unitPrice: number, quantity: number): void {
+  addItem(idProduct: string, unitPrice: number, quantity: number): void {
     this.items.addItem(
       new ShoppingCartItem(
         new ProductId(idProduct),

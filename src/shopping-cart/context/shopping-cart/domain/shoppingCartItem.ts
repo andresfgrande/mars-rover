@@ -3,6 +3,13 @@ import { Price, ProductId } from './product';
 
 import { ProductQuantity } from './productQuantity';
 
+export interface ShoppingCartItemInterface {
+  id: string;
+  unitPrice: number;
+  quantity: number;
+  total: number;
+}
+
 export class ShoppingCartItem {
   constructor(
     private id: ProductId,
@@ -26,12 +33,7 @@ export class ShoppingCartItem {
     this.quantity = this.quantity.addQuantity(quantity);
   }
 
-  toPrimitives(): {
-    id: string;
-    unitPrice: number;
-    quantity: number;
-    total: number;
-  } {
+  toPrimitives(): ShoppingCartItemInterface {
     return {
       id: this.getProductId().toString(),
       unitPrice: this.unitPrice.toNumber(),

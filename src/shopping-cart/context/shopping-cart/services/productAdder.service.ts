@@ -38,7 +38,7 @@ export class ProductAdder {
       );
     }
 
-    currentShoppingCart.addProduct(
+    currentShoppingCart.addItem(
       addProductRequest.idProduct,
       product.toPrimitives().price,
       addProductRequest.quantity,
